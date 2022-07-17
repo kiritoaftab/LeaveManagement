@@ -29,5 +29,24 @@ public class Memoisation {
     
     public static HashSet<String> applicants = new HashSet<>();
     
+    public static HashMap<String,String> idName=new HashMap<>();
+    
+    public static String getName(String id){
+        return idName.get(id);
+    }
+    
+    public static String[] leave={"Casual Leaves","Sick Leaves","Maternity Leaves","Vacation Leaves","Marriage Leaves"};
+    public static String getLeave(int index){
+        return leave[index];
+    }
+    
+    public static HashMap <String,Integer> status=new HashMap<>();
+    public static int getStatus(String id){
+        if(status.containsKey(id)){
+            return status.get(id);
+        }
+        return 0;
+    }
+    
     
 }

@@ -4,10 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,16 +20,15 @@ import java.util.logging.Logger;
  *
  * @author AFTAB DUTTA
  */
-public class PendingApplicants extends javax.swing.JFrame {
+public class OptimizationFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form PendingApplicants
+     * Creates new form OptimizationFrame
      */
     public static ArrayList<String> listId=new ArrayList<>();
     public static ArrayList<String> listType=new ArrayList<>();
     public static ArrayList<String> listDays=new ArrayList<>();
-    
-    public PendingApplicants() {
+    public OptimizationFrame() {
         initComponents();
         displayer();
     }
@@ -42,46 +43,43 @@ public class PendingApplicants extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setViewportView(jList1);
 
-        jLabel1.setText("PENDING APPLICATIONS");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel1.setText("PENDING LEAVE APPLICATIONS");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("BACK");
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setText("APPROVE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Approve Leaves");
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setText("REJECT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Reject Leaves");
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setText("BACK");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Enter id");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,89 +88,112 @@ public class PendingApplicants extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jLabel1))
+                        .addGap(86, 86, 86)
+                        .addComponent(jButton1)
+                        .addGap(74, 74, 74)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(71, 71, 71))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(58, 58, 58))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                        .addGap(163, 163, 163)
+                        .addComponent(jButton3)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(85, 85, 85))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(14, 14, 14))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Admin admin=new Admin();
-        admin.setVisible(true);
-        PendingApplicants.this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        String rejectId=PendingApplicants.this.jTextField2.getText();
-        int index=-1;
-           for(int i=0;i<listId.size();i++){
+          List lst= jList1.getSelectedValuesList();
+        
+        for(int i=0;i<lst.size();i++){
+            System.out.println("Approving the values "+ lst.get(i)); 
+            String curr= lst.get(i).toString().trim();
+            char[] curr_arr=curr.toCharArray();
+            String rejectId ="";
+            for(int k=3;k<curr_arr.length;k++){
+                if(curr_arr[k]!=','){
+                    rejectId+=curr_arr[k];
+                }else{
+                    break;
+                }
+            }
+            System.out.println("Rejected id is "+rejectId);
+            int index=-1;
+           for(int k=0;i<listId.size();k++){
             if(rejectId.equals(listId.get(i))){
-                index=i; break;
+                index=k; break;
             }
         }
         String type=listType.get(index);
         String days=listDays.get(index);
         System.out.println("Rejecting leave request form "+rejectId);
         Memoisation.applicants.remove(rejectId+","+type+","+days);
-        PendingApplicants pa_new= new PendingApplicants();
-            pa_new.setVisible(true);
-            PendingApplicants.this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        Memoisation.status.put(rejectId, 2);
+         OptimizationFrame ep= new OptimizationFrame();
+           ep.setVisible(true);
+           OptimizationFrame.this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String approveId=PendingApplicants.this.jTextField1.getText();
+        Admin admin=new Admin();
+        admin.setVisible(true);
+        OptimizationFrame.this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+    DefaultListModel mod= new DefaultListModel();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // test case print the id selected -- SUCCESS
+        int[] selected=jList1.getSelectedIndices();
+        
+//        List list = (List) jList1.getSelectedValuesList();
+
+//        Object[] selectedValues= jList1.getSelectedValues();
+        List lst= jList1.getSelectedValuesList();
+        
+        for(int i=0;i<lst.size();i++){
+            System.out.println("Approving the values "+ lst.get(i)); 
+            String curr= lst.get(i).toString().trim();
+            char[] curr_arr=curr.toCharArray();
+            String approveId ="";
+            for(int k=3;k<curr_arr.length;k++){
+                if(curr_arr[k]!=','){
+                    approveId+=curr_arr[k];
+                }else{
+                    break;
+                }
+            }
+            System.out.println("Approved id is "+approveId);
         int index=-1;
-        for(int i=0;i<listId.size();i++){
-            if(approveId.equals(listId.get(i))){
-                index=i; break;
+        for(int k=0;k<listId.size();k++){
+            if(approveId.equals(listId.get(k))){
+                index=k; break;
             }
         }
         String type=listType.get(index);
@@ -192,7 +213,7 @@ public class PendingApplicants extends javax.swing.JFrame {
                 sb.append(str[j]+",");
             }
         }
-        System.out.println("updated leaves "+sb);
+        System.out.println("updated leaves for "+Memoisation.getName(approveId)+" "+sb);
         try {
             StringBuilder sb1=new StringBuilder();
             
@@ -218,17 +239,21 @@ public class PendingApplicants extends javax.swing.JFrame {
             listDays.remove(index);
             Memoisation.applicants.remove(approveId+","+type+","+days);
             Memoisation.leaveData.put(approveId,sb.toString());
-            PendingApplicants pa_new= new PendingApplicants();
-            pa_new.setVisible(true);
-            PendingApplicants.this.setVisible(false);
+            Memoisation.status.put(approveId, 1);
+            OptimizationFrame ep= new OptimizationFrame();
+            ep.setVisible(true);
+            OptimizationFrame.this.setVisible(false);
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PendingApplicants.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("file might be held by 2 prople");
         } catch (IOException ex) {
-            Logger.getLogger(PendingApplicants.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("file might be held by 2 prople");
         }
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+        }
+        
+     
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,20 +272,20 @@ public class PendingApplicants extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PendingApplicants.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OptimizationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PendingApplicants.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OptimizationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PendingApplicants.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OptimizationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PendingApplicants.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OptimizationFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PendingApplicants().setVisible(true);
+                new OptimizationFrame().setVisible(true);
             }
         });
     }
@@ -270,21 +295,23 @@ public class PendingApplicants extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
     private void displayer() {
-        Iterator<String> it=Memoisation.applicants.iterator();
+           Iterator<String> it=Memoisation.applicants.iterator();
         while(it.hasNext()){
-            String str[] = it.next().split("\\,");
-            PendingApplicants.this.jTextArea1.append("ID :"+str[0]+" Type :"+Memoisation.getLeave(Integer.parseInt(str[1]))+" Days :"+str[2]+"\n");
-            listId.add(str[0]); listType.add(str[1]); listDays.add(str[2]);
-            
+            jList1.setModel(mod);
+            String str=it.next(); //id,choice,days
+            String s[]=str.split("\\,");
+            mod.addElement("Id:"+s[0]+", Name:"+Memoisation.getName(s[0])+
+                    " Type:"+Memoisation.getLeave(Integer.parseInt(s[1])) +
+                    " Days:"+s[2]);
+             listId.add(s[0]);
+             listType.add(s[1]);
+             listDays.add(s[2]);
         }
-        
+        // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

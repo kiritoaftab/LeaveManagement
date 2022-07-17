@@ -1,3 +1,8 @@
-faculty,777,aftab,
-agag,333,rrr,
+Teaching,111,qwerty,
+Non Teaching,222,qwerty,
+Teaching,333,qwerty,
+Teaching,444,pree,
+Teaching,888,naz,
 
+teaching,185,ishi,
+teaching,789,joe,

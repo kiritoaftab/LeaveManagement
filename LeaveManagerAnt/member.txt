@@ -1,3 +1,8 @@
-faculty,777,aftab,fag,ahah,ahahq,haah,$
-agag,333,abh,hah,a,ahha,ah,$
+Teaching,111,Aftab,ise,M,768,aftab@gmail.com,$
+Non Teaching,222,Amit,ise,M,8790,amit@gamil.com,$
+Teaching,333,Preethika,ISE,F,7879,preethika@gmail.com,$
+Teaching,444,Preethika,ISE,F,5645678797,pree@gmail.com,$
+Teaching,888,Nazeef,CSE,M,6768587957,nazeef@gmail.com,$
 
+teaching,185,ishika,eee,f,7865454356,ishi@gmail.com,$
+teaching,789,joe,ise,m,5647897654,joe@gmail.com,$
